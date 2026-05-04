@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Text Analyzer</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            resize: none;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #00c6ff;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .results {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 16px;
+            word-break: break-word;
+        }
+
+        .list {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .dark-toggle {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+        .toggle-btn {
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Dark Mode */
+        .dark {
+            background: #121212;
+            color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="mainBox">
+    <div class="dark-toggle">
+        <button class="toggle-btn" onclick="toggleMode()">🌙 Toggle Mode</button>
+    </div>
+
+    <h1>✨ Smart Text Analyzer</h1>
+
+    <form method="POST">
+        <textarea name="text" rows="5" placeholder="Enter your text here..." required></textarea>
+        <button type="submit">Analyze Text 🚀</button>
+    </form>
+
+    {% if result %}
+    <div class="results">
+
+        <div class="card">
+            <h3>Word Count</h3>
+            <p>{{result.word_count}}</p>
+        </div>
+
+        <div class="card">
+            <h3>Characters</h3>
+            <p>{{result.char_count}}</p>
+        </div>
+
+        <div class="card">
+            <h3>Vowels</h3>
+            <p>{{result.vowels}}</p>
+        </div>
+
+        <div class="card">
+            <h3>Longest Word</h3>
+            <p>{{result.longest_word}}</p>
+        </div>
+
+        <div class="card">
+            <h3>Top Words</h3>
+            <div class="list">
+                {% for word, count in result.top_words %}
+                <p>{{word}} ({{count}})</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Palindromes</h3>
+            <p>{{result.palindromes}}</p>
+        </div>
+
+        <div class="card">
+            <h3>Uppercase</h3>
+            <p>{{result.uppercase}}</p>
+        </div>
+
+        <div class="card">
+            <h3>Reversed</h3>
+            <p>{{result.reversed_text}}</p>
+        </div>
+
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function toggleMode() {
+    document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>
