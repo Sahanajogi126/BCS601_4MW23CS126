@@ -54,11 +54,12 @@ python app.py
 
 Open in browser:
 
-http://127.0.0.1:5000
+http://127.0.0.1:5000/
 
 🌐 Deployment
 
 The project is deployed on a cloud platform.
 
 👉 Live URL:
-https://your-project-link.onrender.com
+
+https://bcs601-4mw23cs126-2.onrender.com
