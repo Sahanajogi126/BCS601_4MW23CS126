@@ -19,7 +19,7 @@ Flask
 HTML
 CSS
 JavaScript
-Cloud Platform (Render / AWS / Azure)
+Cloud Platform (Render)
 
 ✨ Features
 
